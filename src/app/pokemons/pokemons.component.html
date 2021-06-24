@@ -1,0 +1,28 @@
+<p>Pokemons works!</p>
+<h3>Pokemons:</h3>
+
+
+<div class="pokemon" *ngFor="let poki of pokemon">
+  <h2 (click)="selectPokemon(poki)"> <span [class.selected]="poki === selectedPokemon">{{poki.name | uppercase}}</span> </h2>
+</div>
+    <app-pokemon-details [pokemon]="selectedPokemon"></app-pokemon-details>
+  <!-- <div><span>id: </span>{{pokemon[i].id}}</div>
+  <div><span>name: </span>{{pokemon[i].name}}</div>
+
+  <div>
+    <label for="name">Pokemon name: </label>
+    <input id="name" [(ngModel)]="pokemon[i].name" placeholder="name">
+  </div> -->
+
+
+<!-- <div *ngIf="selectedPokemon">
+
+  <h2>{{selectedPokemon.name | uppercase}} Details</h2>
+  <div><span>id: </span>{{selectedPokemon.id}}</div>
+  <div><span>name: </span>{{selectedPokemon.name}}</div>
+
+  <div>
+    <label for="name">Pokemon name: </label>
+    <input id="name" [(ngModel)]="selectedPokemon.name" placeholder="name">
+  </div>
+</div> -->
