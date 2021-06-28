@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { Pokemon } from 'src/app/pokemon';
-import { Pokemons } from '../mock-pokemons';
+import { Pokemon } from 'src/app/_app-core/models/pokemon.model';
+
 
 @Component({
   selector: 'app-pokemon-details',
@@ -12,3 +12,5 @@ export class PokemonDetailsComponent {
   @Input() pokemon?: Pokemon;
 
 }
+
+

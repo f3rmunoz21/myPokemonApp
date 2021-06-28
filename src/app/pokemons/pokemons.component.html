@@ -1,19 +1,34 @@
-<p>Pokemons works!</p>
-<h3>Pokemons:</h3>
+<div class="pokemonSelector">
+
+  <h3>Choose your Pokemon:</h3>
+
+  <!-- <i class="fas fa-user"></i>
+  <i class="fab fa-github-square"></i>
 
 
-<div class="pokemon" *ngFor="let poki of pokemon">
-  <h2 (click)="selectPokemon(poki)"> <span [class.selected]="poki === selectedPokemon">{{poki.name | uppercase}}</span> </h2>
+  <div class="pokemon" *ngFor="let poki of pokemon">
+    <p (click)="selectPokemon(poki)"> <span [class.selected]="poki === pokemon">{{poki.name | uppercase}}</span>
+    </p>
+  </div> -->
 </div>
-    <app-pokemon-details [pokemon]="selectedPokemon"></app-pokemon-details>
-  <!-- <div><span>id: </span>{{pokemon[i].id}}</div>
+
+<mat-form-field class="example-full-width" appearance="fill">
+  <mat-label>Choose your Pokemon</mat-label>
+  <input #pokiInput matInput placeholder="Pikachu" value="10" (keyup.enter)="getPokemon(pokiInput.value)">
+</mat-form-field>
+
+  <app-pokemon-details [pokemon]="pokemon"></app-pokemon-details>
+
+
+
+
+<!-- <div><span>id: </span>{{pokemon[i].id}}</div>
   <div><span>name: </span>{{pokemon[i].name}}</div>
 
   <div>
     <label for="name">Pokemon name: </label>
     <input id="name" [(ngModel)]="pokemon[i].name" placeholder="name">
   </div> -->
-
 
 <!-- <div *ngIf="selectedPokemon">
 
