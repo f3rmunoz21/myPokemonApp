@@ -1,11 +1,18 @@
-<a routerLink="">home</a>&nbsp;
-<a routerLink="messages">messages</a>
-<!-- <app-pokemons></app-pokemons>
-<app-messages></app-messages> -->
-<!-- <fa-icon [icon]="faUsers"></fa-icon>
-<mat-icon>local_fire_department</mat-icon>
-<mat-icon>water_drop</mat-icon>
-<mat-icon>bolt</mat-icon>
-<mat-icon>water_drop</mat-icon> -->
-<router-outlet></router-outlet>
+<img id="bg-img" src="assets/images/pokemonStadium.png">
+<div class="row">
+  <div class="col-auto">
+    <button mat-icon-button color="primary" routerLink="">
+      <mat-icon>home</mat-icon>
+    </button>&nbsp;
+  </div>
+  <div class="col-auto">
+    <button mat-icon-button color="accent" routerLink="messages">
+      <mat-icon><span class="material-icons-outlined">
+          chat_bubble
+        </span></mat-icon>
+    </button>
+  </div>
+</div>
 
+
+<router-outlet></router-outlet>

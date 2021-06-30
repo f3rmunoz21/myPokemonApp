@@ -11,31 +11,10 @@ import { PokemonService } from '../_app-core/services/pokemon.service';
 
 export class PokemonsComponent {
 
-  selectedPokemon?: Pokemon;
-  pokemon: any;
   constructor(public pokemonService: PokemonService, public messageService: MessageService) { }
 
-  public selectPokemon(pokemon: any): void {
-    console.log(pokemon);
-    this.selectedPokemon = pokemon;
-    this.messageService.add(`Selected ${pokemon.name}`)
-  }
-
   public getPokemon(i: string): void {
-    this.pokemonService.getPokemon(i).subscribe(p => {
-      console.log("This is line 30", p);
-      this.pokemon = new Pokemon(p);
-    }, (err) => {
-      console.error("Something went wrong.");
-    }, () => {
-      console.info("done");
-    });
+    this.pokemonService.getPokemon(i).subscribe();
   }
-
-  // public getPokemonType(): void {
-  //   if(pokemon.types[0]==ELECTRIC) {
-  //     electricTF = true;
-  //   }
-  // }
 
 }

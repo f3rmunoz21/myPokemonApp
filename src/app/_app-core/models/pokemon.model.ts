@@ -9,7 +9,9 @@ export class Pokemon {
     ["electric", "bolt"],
     ["grass", "grass" ],
     ["bug", "pest_control" ],
-    ["ice", "view_in_ar" ]
+    ["ice", "view_in_ar" ],
+    ["dark", "nightlight"],
+    ["fighting", "sports_mma"]
 
   ]);
   abilities?: (AbilitiesEntity)[] | null;
@@ -37,11 +39,11 @@ export class Pokemon {
     return typeArray.join('/');
   }
 
-  public get statsList(): string {
-    const statsArray: string[] = [];
-    this.stats.forEach(o => statsArray.push(o.stat.name));
-    return statsArray.join(':');
-  }
+  // public get statsList(): string {
+  //   const statsArray: string[] = [];
+  //   this.stats.forEach(o => statsArray.push(o.stat.name));
+  //   return statsArray.join(':');
+  // }
 
 
   public get movesList(): string {
@@ -86,10 +88,6 @@ export class Pokemon {
     Object.assign(this, init);
   }
 }
-
-console.log();
-
-
 export interface AbilitiesEntity {
   ability: AbilityOrFormsEntityOrVersionOrItemOrMoveLearnMethodOrVersionGroupOrMoveOrStatOrTypeOrSpecies;
   is_hidden: boolean;

@@ -1,41 +1,48 @@
-<body>
-  <div class="pokiCard">
-    <div class="flip-card" *ngIf="pokemon">
-      <div class="flip-card-inner">
-        <div class="flip-card-front">
-          <div class="poke-img">
-          <img
-            src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/41d3ac77-2823-4e18-8910-a48de63acf87/d8xl0ja-ca02368b-643f-42f4-9721-f3895e14690d.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzQxZDNhYzc3LTI4MjMtNGUxOC04OTEwLWE0OGRlNjNhY2Y4N1wvZDh4bDBqYS1jYTAyMzY4Yi02NDNmLTQyZjQtOTcyMS1mMzg5NWUxNDY5MGQuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.dUhAjPqt1Rkudg3gHjqPNOQAuaA2wmXZ7T-Lq6L28O8"
-            alt="Avatar" style="width:300px;height:300px;"> </div>
+  <div class="flip-card">
+    <div class="flip-card-inner" [ngClass]="{'flip-card-inner-rotate': pokemonService.pokemon}">
+      <div class="flip-card-front">
+        <div class="poke-img">
+          <img src="assets/images/pokemonCard.jpeg" alt="Avatar" style="width:300px;height:300px;"> </div>
+      </div>
+      <div class="flip-card-back">
+
+        <div class="container">
+          <div class="row">
+            <div class="col" align="left">
+              <h6>{{pokemonService.pokemon?.name}} </h6>
+            </div>
+            <div class="col-3"> </div>
+            <div class="col" align="right">
+              <mat-icon>{{pokemonService.pokemon?.typeIcons[0]}}</mat-icon>
+            </div>
+          </div>
         </div>
-        <div class="flip-card-back">
-          <h6>{{pokemon.name}} </h6>
-          <mat-icon>{{pokemon.typeIcons[0]}}</mat-icon>
-          <div class="row justify-content-center">
-            <div class="col" align="center">
-              <img [src]="pokemon.sprites.front_default">
-              <div align="left">
-                <div><span>type(s):</span>{{pokemon.typeList | uppercase}} </div>
-                <div><span>stats:</span>{{pokemon.stats.base_stats}} </div>
-                <div><span>moves:</span>{{pokemon.movesList}} </div>
+
+
+        <audio id="audio" #audio controls style="display: none">
+          <source [src]="'https://play.pokemonshowdown.com/audio/cries/' + pokemonService.pokemon?.name +'.mp3'">
+        </audio>
+
+        <div class="row justify-content-center">
+          <div class="col" align="center">
+            <img class="pointer" (click)="audio.play()" [src]="pokemonService.pokemon?.sprites.front_default">
+            <div align="left">
+              <div><span>type(s):</span>{{pokemonService.pokemon?.typeList | uppercase}} </div>
+              <div class="row" style="max-width: 350px;">
+                <div class="col-12 col-md-6" *ngFor="let stat of statsArray; let i = index">
+                  <div><span>{{stat}}: </span>{{pokemonService.pokemon?.stats[i].base_stat}}</div>
+                  <div class="progress">
+                    <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': (100 * pokemonService.pokemon?.stats[i].base_stat) / 255 + '%',
+                      background: (100 * pokemonService.pokemon?.stats[i].base_stat) / 255 < 20 ? 'red' : (100 * pokemonService.pokemon?.stats[i].base_stat) / 255> 50
+                      ? 'green'
+                      : 'orange'
+                      }" aria-valuenow="0" aria-valuemin="0" aria-valuemax="255"></div>
+                  </div>
+                </div>
+                <div><span>moves:</span>{{pokemonService.pokemon?.movesList}} </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</body>
-
-<!-- <div class="card" *ngIf="pokemon">
-  <div class="container">
-    <h2>{{pokemon.name | uppercase}} Details</h2>
-    <div><span>id: </span>{{pokemon.id}}</div>
-    <div><span>name: </span>{{pokemon.name}}</div>
-
-    <div>
-      <label for="name">Pokemon name: </label>
-      <input id="name" [(ngModel)]="pokemon.name" placeholder="name">
-    </div>
-  </div>
-</div> -->
