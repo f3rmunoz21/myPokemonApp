@@ -2,10 +2,15 @@
 // tslint:disable: class-name
 
 export class Pokemon {
+
   public static typeMap: Map<string, string> = new Map([
     ["fire", "local_fire_department"],
     ["water", "water_drop"],
-    ["electric", "bolt"]
+    ["electric", "bolt"],
+    ["grass", "grass" ],
+    ["bug", "pest_control" ],
+    ["ice", "view_in_ar" ]
+
   ]);
   abilities?: (AbilitiesEntity)[] | null;
   base_experience: number;
@@ -22,7 +27,7 @@ export class Pokemon {
   past_types?: (null)[] | null;
   species: AbilityOrFormsEntityOrVersionOrItemOrMoveLearnMethodOrVersionGroupOrMoveOrStatOrTypeOrSpecies;
   sprites: Sprites;
-  stats?: (StatsEntity)[] | null;
+  stats: (StatsEntity)[] | null;
   types?: (TypesEntity)[] | null;
   weight: number;
 
@@ -30,6 +35,19 @@ export class Pokemon {
     const typeArray: string[] = [];
     this.types.forEach(o => typeArray.push(o.type.name));
     return typeArray.join('/');
+  }
+
+  public get statsList(): string {
+    const statsArray: string[] = [];
+    this.stats.forEach(o => statsArray.push(o.stat.name));
+    return statsArray.join(':');
+  }
+
+
+  public get movesList(): string {
+    const movesArray: string[] = [];
+    this.moves.forEach(o => movesArray.push(o.move.name));
+    return movesArray.join(', ');
   }
 
   public get startingGen(): string {
@@ -68,6 +86,9 @@ export class Pokemon {
     Object.assign(this, init);
   }
 }
+
+console.log();
+
 
 export interface AbilitiesEntity {
   ability: AbilityOrFormsEntityOrVersionOrItemOrMoveLearnMethodOrVersionGroupOrMoveOrStatOrTypeOrSpecies;
